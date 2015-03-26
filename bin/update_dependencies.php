@@ -61,7 +61,7 @@ foreach($dependencies as $name=>$details)
         {
             shell_exec("git clone ".$details['url']." ".$root.$name.'/'.$details['branch']);
         }
-        shell_exec("cd ".$root.$name.'/'.$details['branch'].";git checkout -b ".$details['branch'].";");
+        shell_exec("cd ".$root.$name.'/'.$details['branch'].";git checkout ".$details['branch'].";");
     }
     else
     {
