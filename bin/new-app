@@ -6,12 +6,12 @@ version=${2:-1.0-bootstrap}
 
 if [ ! -d "$dir/../lib/lucid/$version" ]; then
     echo "Checking out lucid, branch $version"
-    if [ ! -d "$dir/../lib/lucid/"]; then
+    if [ ! -d "$dir/../lib/lucid/" ]; then
         mkdir $dir/../lib/lucid;
     fi
     git clone git@github.com:Dev-Lucid/lucid.git $dir/../lib/lucid/$version;
     cd $dir/../lib/lucid/$version;
-    git checkout -b $version;
+    git pull origin $version;
     cd $dir;
 fi
 
