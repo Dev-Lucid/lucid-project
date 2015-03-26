@@ -1,0 +1,5 @@
+#!/bin/sh
+dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+app="$dir/../apps/$1"
+
+

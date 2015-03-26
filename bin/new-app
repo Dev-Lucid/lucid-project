@@ -1,0 +1,19 @@
+#!/bin/bash
+dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+name=$1
+app="$dir/../apps/$1"
+version=${2:-1.0-bootstrap}
+
+if [ ! -d "$dir/../lib/lucid/$version" ]; then
+    echo "Checking out lucid, branch $version"
+    if [ ! -d "$dir/../lib/lucid/"]; then
+        mkdir $dir/../lib/lucid;
+    fi
+    git clone git@github.com:Dev-Lucid/lucid.git $dir/../lib/lucid/$version;
+    cd $dir/../lib/lucid/$version;
+    git checkout -b $version;
+    cd $dir;
+fi
+
+echo "Creating app using lucid $version"
+sh $dir/../lib/lucid/$version/bin/new-app $name;

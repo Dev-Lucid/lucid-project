@@ -1,0 +1,11 @@
+#!/bin/sh
+dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+app="$dir/../apps/$1"
+port=$(awk -F "=" '/dev_port/ {print $2}' $app/etc/environment.ini)
+
+
+echo "Checking dependencies..."
+php -f $dir/update_dependencies.php $1
+
+echo "Starting web server..."
+php -S 127.0.0.1:$port -t $app/www/;
