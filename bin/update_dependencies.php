@@ -5,8 +5,8 @@ $cwd      = __DIR__;
 $root     = $cwd.'/../';
 $app      = $root.'/apps/'.$app_name;
 
-$dependencies = file_get_contents($app.'/etc/dependencies.json');
-$dependencies = json_decode($dependencies,true);
+include($app.'/etc/dependencies.php');
+
 switch (json_last_error())
 {
     case JSON_ERROR_DEPTH:

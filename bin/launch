@@ -1,8 +1,12 @@
 #!/bin/sh
+
+# this script is basically only used to get a variable out of an array in php and into 
+# a bash script. This is so that all config files can be in a .php file format, rather than 
+# a hodgepodge of .ini and .php.
+
 dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 app="$dir/../apps/$1"
-port=$(awk -F "=" '/dev_port/ {print $2}' $app/etc/environment.ini)
-
+port=$(php -f $dir/parse_config.php $app/etc/environment.php environments dev_port)
 
 echo "Checking dependencies..."
 php -f $dir/update_dependencies.php $1
