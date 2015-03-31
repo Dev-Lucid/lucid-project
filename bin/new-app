@@ -3,6 +3,7 @@ dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 name=$1
 app="$dir/../apps/$1"
 version=${2:-1.0-bootstrap}
+cmd=${3:-cp}
 
 if [ ! -d "$dir/../lib/lucid/$version" ]; then
     echo "Checking out lucid, branch $version"
@@ -16,4 +17,4 @@ if [ ! -d "$dir/../lib/lucid/$version" ]; then
 fi
 
 echo "Creating app using lucid $version"
-sh $dir/../lib/lucid/$version/bin/new-app $name;
+sh $dir/../lib/lucid/$version/bin/new-app $name $cmd;
