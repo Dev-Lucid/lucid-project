@@ -3,7 +3,7 @@
 $app_name = $argv[1];
 $cwd      = __DIR__;
 $root     = $cwd.'/../';
-$app      = $root.'/apps/'.$app_name;
+$app      = $root.'apps/'.$app_name;
 
 include($app.'/etc/dependencies.php');
 
