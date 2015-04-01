@@ -11,7 +11,10 @@ port=$(php -f $dir/parse_config.php $app/etc/environment.php environments dev_po
 echo "Checking dependencies..."
 php -f $dir/update_dependencies.php $1
 
-echo "Rebuilding missing models..."
+echo "Rebuilding views..."
+php -f $dir/rebuild_views.php $1
+
+echo "Rebuilding models..."
 php -f $dir/rebuild_models.php $1
 
 echo "Starting web server..."
