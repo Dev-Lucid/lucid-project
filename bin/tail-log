@@ -1,0 +1,7 @@
+#!/bin/sh
+dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+name=$1
+app="$dir/../apps/$name"
+
+sh $app/bin/tail-log
+
