@@ -2,6 +2,17 @@
 dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 app="$dir/../apps/$1"
 
+if [ ! -d "$app" ]; then
+    echo "Could not find app $1 in $dir/../apps/"
+    exit
+fi
+
+if [ ! -d "$app/www" ]; then
+    echo "The application does not contain a folder named www. This folder is required for the launch script to work."
+    echo "If you would like to use a different name for the root directory of your website, you will have to modify "
+    echo "the launch script accordingly."
+    exit
+fi
 
 # this script is basically only used to get a variable out of an array in php and into
 # a bash script. This is so that all config files can be in a .php file format, rather than
@@ -16,6 +27,9 @@ php -f $dir/rebuild_views.php $1
 
 echo "Rebuilding models..."
 php -f $dir/rebuild_models.php $1
+
+echo "Copying bootstrap fonts...\n"
+php -f $dir/copy_fonts.php $1 $app
 
 echo "Starting web server..."
 echo "\n----------------------------------------------------"
